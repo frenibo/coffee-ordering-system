@@ -4,10 +4,13 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        OrderManager orderManager = OrderManager.getInstance();
+
         boolean exit = false;
         while (!exit) {
             System.out.println("\nWelcome to the Coffee Shop!");
             System.out.println("1. Place Order");
+            System.out.println("2. See All Orders");
             System.out.println("X -> Exit");
             System.out.print("Select an option: ");
             String input = scanner.nextLine();
@@ -33,8 +36,23 @@ public class Main {
                         coffee = new SugarDecorator(coffee);
                     }
 
-                    System.out.print("You ordered " + coffee.getDescription() + ".");
+                    Order order = new Order(coffee);
+                    orderManager.registerOrder(order);
+
+                    System.out.print(order.toString());
                     break;
+
+                case "2":
+                    List<Order> orders = orderManager.getOrders();
+                    if (orders.isEmpty()) {
+                        System.out.println("No orders have been made.");
+                    } else {
+                        orders.forEach(action -> {
+                            System.out.println(action.toString());
+                        });
+                    }
+                    break;
+                    
 
                 case "X":
                     exit = true;
