@@ -8,6 +8,8 @@ public class Main {
         OrderFacade facade = new OrderFacade();
         OrderInvoker invoker = new OrderInvoker();
         OrderManager orderManager = OrderManager.getInstance();
+        orderManager.registerObserver(new BaristaDisplay());
+        orderManager.registerObserver(new KitchenDisplay());
 
         List<Order> orders;
 
