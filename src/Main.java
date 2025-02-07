@@ -8,6 +8,7 @@ public class Main {
         while (!exit) {
             System.out.println("\nWelcome to the Coffee Shop!");
             System.out.println("1. Place Order");
+            System.out.println("X -> Exit");
             System.out.print("Select an option: ");
             String input = scanner.nextLine();
 
@@ -33,6 +34,11 @@ public class Main {
                     }
 
                     System.out.print("You ordered " + coffee.getDescription() + ".");
+                    break;
+
+                case "X":
+                    exit = true;
+                    System.out.println("Thank you for visiting!");
                     break;
                     
                 default:
