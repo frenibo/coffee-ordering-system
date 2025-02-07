@@ -1,5 +1,7 @@
 # Coffee Shop Ordering System
 
+GitHub Repository: https://github.com/frenibo/coffee-ordering-system
+
 This Java console application simulates a simple coffee shop ordering system. It demonstrates the use of six design patterns:
 
 - **Creational Patterns:**
