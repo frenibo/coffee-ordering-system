@@ -4,8 +4,10 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        OrderManager orderManager = OrderManager.getInstance();
+        
+        OrderFacade facade = new OrderFacade();
         OrderInvoker invoker = new OrderInvoker();
+        OrderManager orderManager = OrderManager.getInstance();
 
         List<Order> orders;
 
@@ -41,9 +43,10 @@ public class Main {
                     }
 
                     Order order = new Order(coffee);
-                    orderManager.registerOrder(order);
-
-                    System.out.print(order.toString());
+                    // Create a command to place order
+                    Command placeOrder = new PlaceOrderCommand(facade, order);
+                    invoker.takeCommand(placeOrder);
+                    invoker.processCommands();
                     break;
 
                 case "2":

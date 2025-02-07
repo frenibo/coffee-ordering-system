@@ -3,6 +3,21 @@ interface Command {
     void execute();
 }
 
+class PlaceOrderCommand implements Command {
+    private OrderFacade facade;
+    private Order order;
+    
+    public PlaceOrderCommand(OrderFacade facade, Order order) {
+        this.facade = facade;
+        this.order = order;
+    }
+    
+    @Override
+    public void execute() {
+        facade.processOrder(order);
+    }
+}
+
 class CancelOrderCommand implements Command {
     private OrderManager orderManager;
     private Order order;
