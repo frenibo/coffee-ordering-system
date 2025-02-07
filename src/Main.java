@@ -5,13 +5,17 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         OrderManager orderManager = OrderManager.getInstance();
+        OrderInvoker invoker = new OrderInvoker();
+
+        List<Order> orders;
 
         boolean exit = false;
         while (!exit) {
             System.out.println("\nWelcome to the Coffee Shop!");
             System.out.println("1. Place Order");
             System.out.println("2. See All Orders");
-            System.out.println("X -> Exit");
+            System.out.println("3. Cancel Last Order");
+            System.out.println("x -> Exit");
             System.out.print("Select an option: ");
             String input = scanner.nextLine();
 
@@ -43,7 +47,7 @@ public class Main {
                     break;
 
                 case "2":
-                    List<Order> orders = orderManager.getOrders();
+                    orders = orderManager.getOrders();
                     if (orders.isEmpty()) {
                         System.out.println("No orders have been made.");
                     } else {
@@ -52,9 +56,23 @@ public class Main {
                         });
                     }
                     break;
+
+                case "3":
+                    // For demonstration, cancel the last order if exists.
+                    orders = orderManager.getOrders();
+                    if (orders.isEmpty()) {
+                        System.out.println("No orders to cancel!");
+                    } else {
+                        Order lastOrder = orders.get(orders.size() - 1);
+                        Command cancelOrder = new CancelOrderCommand(lastOrder);
+                        invoker.takeCommand(cancelOrder);
+                        invoker.processCommands();
+                    }
+                    break;
+                    
                     
 
-                case "X":
+                case "x":
                     exit = true;
                     System.out.println("Thank you for visiting!");
                     break;
