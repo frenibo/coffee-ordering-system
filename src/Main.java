@@ -21,7 +21,18 @@ public class Main {
                         System.out.println("Invalid coffee type!");
                         break;
                     }
-                    System.out.print("You ordered a " + coffee.getDescription() + ".");
+
+                    // Decide on Milk & Sugar
+                    System.out.print("Add milk to your " + coffee.getDescription() + "? (y/n): ");
+                    if (scanner.nextLine().equalsIgnoreCase("y")) {
+                        coffee = new MilkDecorator(coffee);
+                    }
+                    System.out.print("Add sugar to your " + coffee.getDescription() + "? (y/n): ");
+                    if (scanner.nextLine().equalsIgnoreCase("y")) {
+                        coffee = new SugarDecorator(coffee);
+                    }
+
+                    System.out.print("You ordered " + coffee.getDescription() + ".");
                     break;
                     
                 default:
